@@ -32,6 +32,7 @@ services:
   database:
     build:
       context: "./bin/${DATABASE}"
+    command: mysqld --sql_mode=""
     container_name: "${COMPOSE_PROJECT_NAME}-${DATABASE}"
     restart: "always"
     ports:

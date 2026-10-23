@@ -21,16 +21,22 @@ As of now, we have several different PHP versions. Use appropriate php version a
 - 8.0.x
 - 8.1.x
 - 8.2.x
+- 8.4.x (default)
+
+> **Security notice:** Only the `php84` image (PHP 8.4.27 or newer) contains the fixes for
+> CVE-2026-109618 / CVE-2026-109619 ("PHP2Shell", unauthenticated RCE). All other PHP versions
+> listed above are affected and receive no upstream fix - do not expose them to any network.
 
 ## Installation
 
 - Clone this repository on your local computer
-- configure .env as needed
+- copy `sample.env` to `.env` and configure it as needed
 - Run the `docker-compose up -d`.
 
 ```shell
 git clone https://github.com/terrychou929/docker-compose-lamp.git
 cd docker-compose-lamp/
+cp sample.env .env
 // modify .env as needed
 docker-compose up -d
 // visit localhost
@@ -167,7 +173,7 @@ May differ for PHP Versions <7.x.x
 
 ## phpMyAdmin
 
-phpMyAdmin is configured to run on port 8080. Use following default credentials.
+phpMyAdmin is configured to run on port 8080 and is only reachable from the local machine. Log in with the following default credentials.
 
 http://localhost:8080/  
 username: root  

@@ -25,7 +25,7 @@ usage() {
 
 echo "Usage:"
 echo "       -b = build all container variations of specified version"
-echo "            valid values are: php54, php56, php71, php72, php73, php74, php8, php81, php82"
+echo "            valid values are: php54, php56, php71, php72, php73, php74, php8, php81, php82, php84"
 echo -e " \nAttention: !!! SCRIPT REMOVES ALL DATA IN 'data/mysql/*' !!!"
 }
 
@@ -76,7 +76,7 @@ buildenvfile () {
 
 cat sample.env > ./buildtest/"$buildtarget"-"$version".env
 sed -i "s/COMPOSE_PROJECT_NAME=lamp/COMPOSE_PROJECT_NAME=$buildtarget-buildtest/" ./buildtest/"$buildtarget"-"$version".env
-sed -i "s/PHPVERSION=php8/PHPVERSION=$buildtarget/" ./buildtest/"$buildtarget"-"$version".env
+sed -i "s/^PHPVERSION=.*/PHPVERSION=$buildtarget/" ./buildtest/"$buildtarget"-"$version".env
 sed -i "s/DATABASE=mysql8/DATABASE=$version/" ./buildtest/"$buildtarget"-"$version".env
 }
 
@@ -125,7 +125,7 @@ if [ "$buildtarget" == 'php54' ]||[ "$buildtarget" == 'php56' ]||[ "$buildtarget
                 build "$buildtarget" "$version"
                 cleanup
         done
-elif [ "$buildtarget" == 'php74' ]||[ "$buildtarget" == 'php8' ]||[ "$buildtarget" == 'php81' ] || [ "$buildtarget" == 'php82' ] ; then
+elif [ "$buildtarget" == 'php74' ]||[ "$buildtarget" == 'php8' ]||[ "$buildtarget" == 'php81' ] || [ "$buildtarget" == 'php82' ] || [ "$buildtarget" == 'php84' ] ; then
         for version in "${dbarr[@]}"
         do
                 checkdep
